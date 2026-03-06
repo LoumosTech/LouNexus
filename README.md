@@ -34,6 +34,8 @@ All activity is stored as **station events**, allowing the system to maintain a 
 
 LouNexus uses a PostgreSQL database organized into several schemas.
 
+[Docs here](./Docs/DATABASE.md)
+
 ## Core Schema
 
 Contains configuration and structural data.
