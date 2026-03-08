@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict STZweefJ5uq0ekDl1ujqKjg1QF5PBLY4M98dplNLw3D1T0oOyfcDebfazg0eUXO
+\restrict WvjJTomfw9LbvKn2EqaKRfFTjoej5c0aIUfZs9AiNQxybDF1Bde9KAfPpgFI5Bx
 
 -- Dumped from database version 16.13 (Ubuntu 16.13-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-03-06 16:46:37
+-- Started on 2026-03-07 21:55:03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -42,6 +42,16 @@ CREATE SCHEMA core;
 ALTER SCHEMA core OWNER TO "LouNexus_Admin";
 
 --
+-- TOC entry 10 (class 2615 OID 16694)
+-- Name: inventory; Type: SCHEMA; Schema: -; Owner: LouNexus_Admin
+--
+
+CREATE SCHEMA inventory;
+
+
+ALTER SCHEMA inventory OWNER TO "LouNexus_Admin";
+
+--
 -- TOC entry 7 (class 2615 OID 16443)
 -- Name: prod; Type: SCHEMA; Schema: -; Owner: LouNexus_Admin
 --
@@ -66,7 +76,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 219 (class 1259 OID 16398)
+-- TOC entry 220 (class 1259 OID 16398)
 -- Name: factory; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -81,7 +91,7 @@ CREATE TABLE core.factory (
 ALTER TABLE core.factory OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 222 (class 1259 OID 16444)
+-- TOC entry 223 (class 1259 OID 16444)
 -- Name: part; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -99,7 +109,7 @@ CREATE TABLE core.part (
 ALTER TABLE core.part OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 226 (class 1259 OID 16515)
+-- TOC entry 227 (class 1259 OID 16515)
 -- Name: part_measurement; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -114,7 +124,7 @@ CREATE TABLE core.part_measurement (
 ALTER TABLE core.part_measurement OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 225 (class 1259 OID 16499)
+-- TOC entry 226 (class 1259 OID 16499)
 -- Name: part_measurement_spec; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -134,7 +144,7 @@ CREATE TABLE core.part_measurement_spec (
 ALTER TABLE core.part_measurement_spec OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 227 (class 1259 OID 16529)
+-- TOC entry 228 (class 1259 OID 16529)
 -- Name: part_tracking_attribute; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -153,7 +163,7 @@ CREATE TABLE core.part_tracking_attribute (
 ALTER TABLE core.part_tracking_attribute OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 223 (class 1259 OID 16457)
+-- TOC entry 224 (class 1259 OID 16457)
 -- Name: part_workstation_requirement; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -170,7 +180,7 @@ CREATE TABLE core.part_workstation_requirement (
 ALTER TABLE core.part_workstation_requirement OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 221 (class 1259 OID 16432)
+-- TOC entry 222 (class 1259 OID 16432)
 -- Name: reject_code; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -186,7 +196,7 @@ CREATE TABLE core.reject_code (
 ALTER TABLE core.reject_code OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 220 (class 1259 OID 16409)
+-- TOC entry 221 (class 1259 OID 16409)
 -- Name: workstation; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -207,7 +217,7 @@ CREATE TABLE core.workstation (
 ALTER TABLE core.workstation OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 224 (class 1259 OID 16472)
+-- TOC entry 225 (class 1259 OID 16472)
 -- Name: workstation_type; Type: TABLE; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -227,7 +237,27 @@ CREATE TABLE core.workstation_type (
 ALTER TABLE core.workstation_type OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 228 (class 1259 OID 16553)
+-- TOC entry 235 (class 1259 OID 16696)
+-- Name: raw_material; Type: TABLE; Schema: inventory; Owner: LouNexus_Admin
+--
+
+CREATE TABLE inventory.raw_material (
+    raw_material_id integer NOT NULL,
+    part_id integer NOT NULL,
+    quantity numeric DEFAULT 0 NOT NULL,
+    lot_number text NOT NULL,
+    material_description text,
+    factory_id integer,
+    is_active boolean DEFAULT true NOT NULL,
+    created_utc timestamp with time zone DEFAULT now() NOT NULL,
+    CONSTRAINT "quantity validation" CHECK ((quantity >= (0)::numeric))
+);
+
+
+ALTER TABLE inventory.raw_material OWNER TO "LouNexus_Admin";
+
+--
+-- TOC entry 229 (class 1259 OID 16553)
 -- Name: inspection; Type: TABLE; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -247,7 +277,7 @@ CREATE TABLE prod.inspection (
 ALTER TABLE prod.inspection OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 229 (class 1259 OID 16574)
+-- TOC entry 230 (class 1259 OID 16574)
 -- Name: station_event; Type: TABLE; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -267,7 +297,7 @@ CREATE TABLE prod.station_event (
 ALTER TABLE prod.station_event OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 231 (class 1259 OID 16618)
+-- TOC entry 232 (class 1259 OID 16618)
 -- Name: station_event_attribute; Type: TABLE; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -284,7 +314,7 @@ CREATE TABLE prod.station_event_attribute (
 ALTER TABLE prod.station_event_attribute OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 230 (class 1259 OID 16593)
+-- TOC entry 231 (class 1259 OID 16593)
 -- Name: station_event_reject; Type: TABLE; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -301,7 +331,7 @@ CREATE TABLE prod.station_event_reject (
 ALTER TABLE prod.station_event_reject OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 232 (class 1259 OID 16641)
+-- TOC entry 233 (class 1259 OID 16641)
 -- Name: measurement_set; Type: TABLE; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -317,7 +347,7 @@ CREATE TABLE quality.measurement_set (
 ALTER TABLE quality.measurement_set OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 233 (class 1259 OID 16670)
+-- TOC entry 234 (class 1259 OID 16670)
 -- Name: measurement_value; Type: TABLE; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -334,7 +364,7 @@ CREATE TABLE quality.measurement_value (
 ALTER TABLE quality.measurement_value OWNER TO "LouNexus_Admin";
 
 --
--- TOC entry 3350 (class 2606 OID 16406)
+-- TOC entry 3360 (class 2606 OID 16406)
 -- Name: factory factory_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -343,7 +373,7 @@ ALTER TABLE ONLY core.factory
 
 
 --
--- TOC entry 3382 (class 2606 OID 16551)
+-- TOC entry 3392 (class 2606 OID 16551)
 -- Name: part_tracking_attribute name unique; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -352,7 +382,7 @@ ALTER TABLE ONLY core.part_tracking_attribute
 
 
 --
--- TOC entry 3380 (class 2606 OID 16523)
+-- TOC entry 3390 (class 2606 OID 16523)
 -- Name: part_measurement part_measurement_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -361,7 +391,7 @@ ALTER TABLE ONLY core.part_measurement
 
 
 --
--- TOC entry 3378 (class 2606 OID 16509)
+-- TOC entry 3388 (class 2606 OID 16509)
 -- Name: part_measurement_spec part_measurement_spec_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -370,7 +400,7 @@ ALTER TABLE ONLY core.part_measurement_spec
 
 
 --
--- TOC entry 3364 (class 2606 OID 16452)
+-- TOC entry 3374 (class 2606 OID 16452)
 -- Name: part part_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -379,7 +409,7 @@ ALTER TABLE ONLY core.part
 
 
 --
--- TOC entry 3384 (class 2606 OID 16539)
+-- TOC entry 3394 (class 2606 OID 16539)
 -- Name: part_tracking_attribute part_tracking_attribute_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -388,7 +418,7 @@ ALTER TABLE ONLY core.part_tracking_attribute
 
 
 --
--- TOC entry 3370 (class 2606 OID 16461)
+-- TOC entry 3380 (class 2606 OID 16461)
 -- Name: part_workstation_requirement part_workstation_requirement_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -397,7 +427,7 @@ ALTER TABLE ONLY core.part_workstation_requirement
 
 
 --
--- TOC entry 3360 (class 2606 OID 16440)
+-- TOC entry 3370 (class 2606 OID 16440)
 -- Name: reject_code reject_code_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -406,7 +436,7 @@ ALTER TABLE ONLY core.reject_code
 
 
 --
--- TOC entry 3362 (class 2606 OID 16442)
+-- TOC entry 3372 (class 2606 OID 16442)
 -- Name: reject_code unique code; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -415,7 +445,7 @@ ALTER TABLE ONLY core.reject_code
 
 
 --
--- TOC entry 3354 (class 2606 OID 16426)
+-- TOC entry 3364 (class 2606 OID 16426)
 -- Name: workstation unique factory id; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -424,7 +454,7 @@ ALTER TABLE ONLY core.workstation
 
 
 --
--- TOC entry 3352 (class 2606 OID 16408)
+-- TOC entry 3362 (class 2606 OID 16408)
 -- Name: factory unique factory name; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -433,7 +463,7 @@ ALTER TABLE ONLY core.factory
 
 
 --
--- TOC entry 3366 (class 2606 OID 16454)
+-- TOC entry 3376 (class 2606 OID 16454)
 -- Name: part unique part number; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -442,7 +472,7 @@ ALTER TABLE ONLY core.part
 
 
 --
--- TOC entry 3368 (class 2606 OID 16456)
+-- TOC entry 3378 (class 2606 OID 16456)
 -- Name: part unique url; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -451,7 +481,7 @@ ALTER TABLE ONLY core.part
 
 
 --
--- TOC entry 3356 (class 2606 OID 16424)
+-- TOC entry 3366 (class 2606 OID 16424)
 -- Name: workstation unique work station code; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -460,7 +490,7 @@ ALTER TABLE ONLY core.workstation
 
 
 --
--- TOC entry 3358 (class 2606 OID 16422)
+-- TOC entry 3368 (class 2606 OID 16422)
 -- Name: workstation workstation_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -469,7 +499,7 @@ ALTER TABLE ONLY core.workstation
 
 
 --
--- TOC entry 3372 (class 2606 OID 16484)
+-- TOC entry 3382 (class 2606 OID 16484)
 -- Name: workstation_type workstation_type_pkey; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -478,7 +508,7 @@ ALTER TABLE ONLY core.workstation_type
 
 
 --
--- TOC entry 3374 (class 2606 OID 16488)
+-- TOC entry 3384 (class 2606 OID 16488)
 -- Name: workstation_type ws_type_code unique; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -487,7 +517,7 @@ ALTER TABLE ONLY core.workstation_type
 
 
 --
--- TOC entry 3376 (class 2606 OID 16486)
+-- TOC entry 3386 (class 2606 OID 16486)
 -- Name: workstation_type ws_type_name unique; Type: CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -496,7 +526,16 @@ ALTER TABLE ONLY core.workstation_type
 
 
 --
--- TOC entry 3386 (class 2606 OID 16561)
+-- TOC entry 3420 (class 2606 OID 16706)
+-- Name: raw_material raw_material_pkey; Type: CONSTRAINT; Schema: inventory; Owner: LouNexus_Admin
+--
+
+ALTER TABLE ONLY inventory.raw_material
+    ADD CONSTRAINT raw_material_pkey PRIMARY KEY (raw_material_id);
+
+
+--
+-- TOC entry 3396 (class 2606 OID 16561)
 -- Name: inspection inspection_pkey; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -505,7 +544,7 @@ ALTER TABLE ONLY prod.inspection
 
 
 --
--- TOC entry 3398 (class 2606 OID 16627)
+-- TOC entry 3408 (class 2606 OID 16627)
 -- Name: station_event_attribute no dupes; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -514,7 +553,7 @@ ALTER TABLE ONLY prod.station_event_attribute
 
 
 --
--- TOC entry 3400 (class 2606 OID 16625)
+-- TOC entry 3410 (class 2606 OID 16625)
 -- Name: station_event_attribute station_event_attribute_pkey; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -523,7 +562,7 @@ ALTER TABLE ONLY prod.station_event_attribute
 
 
 --
--- TOC entry 3390 (class 2606 OID 16582)
+-- TOC entry 3400 (class 2606 OID 16582)
 -- Name: station_event station_event_pkey; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -532,7 +571,7 @@ ALTER TABLE ONLY prod.station_event
 
 
 --
--- TOC entry 3392 (class 2606 OID 16600)
+-- TOC entry 3402 (class 2606 OID 16600)
 -- Name: station_event_reject station_event_reject_pkey; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -541,7 +580,7 @@ ALTER TABLE ONLY prod.station_event_reject
 
 
 --
--- TOC entry 3388 (class 2606 OID 16563)
+-- TOC entry 3398 (class 2606 OID 16563)
 -- Name: inspection unique inspection number; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -550,7 +589,7 @@ ALTER TABLE ONLY prod.inspection
 
 
 --
--- TOC entry 3394 (class 2606 OID 16614)
+-- TOC entry 3404 (class 2606 OID 16614)
 -- Name: station_event_reject unique reject code id; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -559,7 +598,7 @@ ALTER TABLE ONLY prod.station_event_reject
 
 
 --
--- TOC entry 3396 (class 2606 OID 16612)
+-- TOC entry 3406 (class 2606 OID 16612)
 -- Name: station_event_reject unique station event id; Type: CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -568,7 +607,7 @@ ALTER TABLE ONLY prod.station_event_reject
 
 
 --
--- TOC entry 3402 (class 2606 OID 16648)
+-- TOC entry 3412 (class 2606 OID 16648)
 -- Name: measurement_set measurement_set_pkey; Type: CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -577,7 +616,7 @@ ALTER TABLE ONLY quality.measurement_set
 
 
 --
--- TOC entry 3406 (class 2606 OID 16678)
+-- TOC entry 3416 (class 2606 OID 16678)
 -- Name: measurement_value measurement_value_pkey; Type: CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -586,7 +625,7 @@ ALTER TABLE ONLY quality.measurement_value
 
 
 --
--- TOC entry 3404 (class 2606 OID 16650)
+-- TOC entry 3414 (class 2606 OID 16650)
 -- Name: measurement_set no dupes; Type: CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -595,7 +634,7 @@ ALTER TABLE ONLY quality.measurement_set
 
 
 --
--- TOC entry 3408 (class 2606 OID 16680)
+-- TOC entry 3418 (class 2606 OID 16680)
 -- Name: measurement_value no dupes measurements; Type: CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -604,7 +643,7 @@ ALTER TABLE ONLY quality.measurement_value
 
 
 --
--- TOC entry 3409 (class 2606 OID 16427)
+-- TOC entry 3421 (class 2606 OID 16427)
 -- Name: workstation factory id foreign key; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -613,7 +652,7 @@ ALTER TABLE ONLY core.workstation
 
 
 --
--- TOC entry 3411 (class 2606 OID 16462)
+-- TOC entry 3423 (class 2606 OID 16462)
 -- Name: part_workstation_requirement foreignkeys - part id; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -622,7 +661,7 @@ ALTER TABLE ONLY core.part_workstation_requirement
 
 
 --
--- TOC entry 3412 (class 2606 OID 16494)
+-- TOC entry 3424 (class 2606 OID 16494)
 -- Name: part_workstation_requirement foreignkeys - workstation type id; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -631,7 +670,7 @@ ALTER TABLE ONLY core.part_workstation_requirement
 
 
 --
--- TOC entry 3413 (class 2606 OID 16510)
+-- TOC entry 3425 (class 2606 OID 16510)
 -- Name: part_measurement_spec part id foreign key; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -640,7 +679,7 @@ ALTER TABLE ONLY core.part_measurement_spec
 
 
 --
--- TOC entry 3414 (class 2606 OID 16524)
+-- TOC entry 3426 (class 2606 OID 16524)
 -- Name: part_measurement_spec part measurement id foreign key; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -649,7 +688,7 @@ ALTER TABLE ONLY core.part_measurement_spec
 
 
 --
--- TOC entry 3415 (class 2606 OID 16540)
+-- TOC entry 3427 (class 2606 OID 16540)
 -- Name: part_tracking_attribute partidFK; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -658,7 +697,7 @@ ALTER TABLE ONLY core.part_tracking_attribute
 
 
 --
--- TOC entry 3416 (class 2606 OID 16545)
+-- TOC entry 3428 (class 2606 OID 16545)
 -- Name: part_tracking_attribute wks type id fk; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -667,7 +706,7 @@ ALTER TABLE ONLY core.part_tracking_attribute
 
 
 --
--- TOC entry 3410 (class 2606 OID 16489)
+-- TOC entry 3422 (class 2606 OID 16489)
 -- Name: workstation workstation_type_id foreign key; Type: FK CONSTRAINT; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -676,7 +715,25 @@ ALTER TABLE ONLY core.workstation
 
 
 --
--- TOC entry 3417 (class 2606 OID 16564)
+-- TOC entry 3440 (class 2606 OID 16712)
+-- Name: raw_material factory id fk; Type: FK CONSTRAINT; Schema: inventory; Owner: LouNexus_Admin
+--
+
+ALTER TABLE ONLY inventory.raw_material
+    ADD CONSTRAINT "factory id fk" FOREIGN KEY (factory_id) REFERENCES core.factory(factory_id);
+
+
+--
+-- TOC entry 3441 (class 2606 OID 16707)
+-- Name: raw_material part id fk; Type: FK CONSTRAINT; Schema: inventory; Owner: LouNexus_Admin
+--
+
+ALTER TABLE ONLY inventory.raw_material
+    ADD CONSTRAINT "part id fk" FOREIGN KEY (part_id) REFERENCES core.part(part_id);
+
+
+--
+-- TOC entry 3429 (class 2606 OID 16564)
 -- Name: inspection factory id fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -685,7 +742,7 @@ ALTER TABLE ONLY prod.inspection
 
 
 --
--- TOC entry 3419 (class 2606 OID 16583)
+-- TOC entry 3431 (class 2606 OID 16583)
 -- Name: station_event insp id fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -694,7 +751,7 @@ ALTER TABLE ONLY prod.station_event
 
 
 --
--- TOC entry 3418 (class 2606 OID 16569)
+-- TOC entry 3430 (class 2606 OID 16569)
 -- Name: inspection part id fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -703,7 +760,7 @@ ALTER TABLE ONLY prod.inspection
 
 
 --
--- TOC entry 3423 (class 2606 OID 16633)
+-- TOC entry 3435 (class 2606 OID 16633)
 -- Name: station_event_attribute part tracking attribute id fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -712,7 +769,7 @@ ALTER TABLE ONLY prod.station_event_attribute
 
 
 --
--- TOC entry 3421 (class 2606 OID 16601)
+-- TOC entry 3433 (class 2606 OID 16601)
 -- Name: station_event_reject reject code fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -721,7 +778,7 @@ ALTER TABLE ONLY prod.station_event_reject
 
 
 --
--- TOC entry 3424 (class 2606 OID 16628)
+-- TOC entry 3436 (class 2606 OID 16628)
 -- Name: station_event_attribute station event id fk; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -730,7 +787,7 @@ ALTER TABLE ONLY prod.station_event_attribute
 
 
 --
--- TOC entry 3422 (class 2606 OID 16606)
+-- TOC entry 3434 (class 2606 OID 16606)
 -- Name: station_event_reject station_event_id; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -739,7 +796,7 @@ ALTER TABLE ONLY prod.station_event_reject
 
 
 --
--- TOC entry 3420 (class 2606 OID 16588)
+-- TOC entry 3432 (class 2606 OID 16588)
 -- Name: station_event workstation_id; Type: FK CONSTRAINT; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -748,7 +805,7 @@ ALTER TABLE ONLY prod.station_event
 
 
 --
--- TOC entry 3427 (class 2606 OID 16681)
+-- TOC entry 3439 (class 2606 OID 16681)
 -- Name: measurement_value measurement set id fk; Type: FK CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -757,7 +814,7 @@ ALTER TABLE ONLY quality.measurement_value
 
 
 --
--- TOC entry 3425 (class 2606 OID 16656)
+-- TOC entry 3437 (class 2606 OID 16656)
 -- Name: measurement_set part measurement id fk; Type: FK CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -766,7 +823,7 @@ ALTER TABLE ONLY quality.measurement_set
 
 
 --
--- TOC entry 3426 (class 2606 OID 16651)
+-- TOC entry 3438 (class 2606 OID 16651)
 -- Name: measurement_set station event id fk; Type: FK CONSTRAINT; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -775,7 +832,7 @@ ALTER TABLE ONLY quality.measurement_set
 
 
 --
--- TOC entry 3576 (class 0 OID 0)
+-- TOC entry 3590 (class 0 OID 0)
 -- Dependencies: 9
 -- Name: SCHEMA admin; Type: ACL; Schema: -; Owner: LouNexus_Admin
 --
@@ -784,7 +841,7 @@ GRANT USAGE ON SCHEMA admin TO "LouNexus";
 
 
 --
--- TOC entry 3577 (class 0 OID 0)
+-- TOC entry 3591 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA core; Type: ACL; Schema: -; Owner: LouNexus_Admin
 --
@@ -793,7 +850,16 @@ GRANT USAGE ON SCHEMA core TO "LouNexus";
 
 
 --
--- TOC entry 3578 (class 0 OID 0)
+-- TOC entry 3592 (class 0 OID 0)
+-- Dependencies: 10
+-- Name: SCHEMA inventory; Type: ACL; Schema: -; Owner: LouNexus_Admin
+--
+
+GRANT USAGE ON SCHEMA inventory TO "LouNexus";
+
+
+--
+-- TOC entry 3593 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: SCHEMA prod; Type: ACL; Schema: -; Owner: LouNexus_Admin
 --
@@ -802,7 +868,7 @@ GRANT USAGE ON SCHEMA prod TO "LouNexus";
 
 
 --
--- TOC entry 3579 (class 0 OID 0)
+-- TOC entry 3594 (class 0 OID 0)
 -- Dependencies: 8
 -- Name: SCHEMA quality; Type: ACL; Schema: -; Owner: LouNexus_Admin
 --
@@ -811,8 +877,8 @@ GRANT USAGE ON SCHEMA quality TO "LouNexus";
 
 
 --
--- TOC entry 3580 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3595 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: TABLE factory; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -820,8 +886,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.factory TO "LouNexus";
 
 
 --
--- TOC entry 3581 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 3596 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: TABLE part; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -829,8 +895,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.part TO "LouNexus";
 
 
 --
--- TOC entry 3582 (class 0 OID 0)
--- Dependencies: 226
+-- TOC entry 3597 (class 0 OID 0)
+-- Dependencies: 227
 -- Name: TABLE part_measurement; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -838,8 +904,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.part_measurement TO "LouNexus";
 
 
 --
--- TOC entry 3583 (class 0 OID 0)
--- Dependencies: 225
+-- TOC entry 3598 (class 0 OID 0)
+-- Dependencies: 226
 -- Name: TABLE part_measurement_spec; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -847,8 +913,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.part_measurement_spec TO "LouNex
 
 
 --
--- TOC entry 3584 (class 0 OID 0)
--- Dependencies: 227
+-- TOC entry 3599 (class 0 OID 0)
+-- Dependencies: 228
 -- Name: TABLE part_tracking_attribute; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -856,8 +922,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.part_tracking_attribute TO "LouN
 
 
 --
--- TOC entry 3585 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 3600 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: TABLE part_workstation_requirement; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -865,8 +931,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.part_workstation_requirement TO 
 
 
 --
--- TOC entry 3586 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 3601 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: TABLE reject_code; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -874,8 +940,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.reject_code TO "LouNexus";
 
 
 --
--- TOC entry 3587 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 3602 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: TABLE workstation; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -883,8 +949,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.workstation TO "LouNexus";
 
 
 --
--- TOC entry 3588 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 3603 (class 0 OID 0)
+-- Dependencies: 225
 -- Name: TABLE workstation_type; Type: ACL; Schema: core; Owner: LouNexus_Admin
 --
 
@@ -892,8 +958,17 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE core.workstation_type TO "LouNexus";
 
 
 --
--- TOC entry 3589 (class 0 OID 0)
--- Dependencies: 228
+-- TOC entry 3604 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: TABLE raw_material; Type: ACL; Schema: inventory; Owner: LouNexus_Admin
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE inventory.raw_material TO "LouNexus";
+
+
+--
+-- TOC entry 3605 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: TABLE inspection; Type: ACL; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -901,8 +976,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE prod.inspection TO "LouNexus";
 
 
 --
--- TOC entry 3590 (class 0 OID 0)
--- Dependencies: 229
+-- TOC entry 3606 (class 0 OID 0)
+-- Dependencies: 230
 -- Name: TABLE station_event; Type: ACL; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -910,8 +985,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE prod.station_event TO "LouNexus";
 
 
 --
--- TOC entry 3591 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 3607 (class 0 OID 0)
+-- Dependencies: 232
 -- Name: TABLE station_event_attribute; Type: ACL; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -919,8 +994,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE prod.station_event_attribute TO "LouN
 
 
 --
--- TOC entry 3592 (class 0 OID 0)
--- Dependencies: 230
+-- TOC entry 3608 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: TABLE station_event_reject; Type: ACL; Schema: prod; Owner: LouNexus_Admin
 --
 
@@ -928,8 +1003,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE prod.station_event_reject TO "LouNexu
 
 
 --
--- TOC entry 3593 (class 0 OID 0)
--- Dependencies: 232
+-- TOC entry 3609 (class 0 OID 0)
+-- Dependencies: 233
 -- Name: TABLE measurement_set; Type: ACL; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -937,8 +1012,8 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE quality.measurement_set TO "LouNexus"
 
 
 --
--- TOC entry 3594 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 3610 (class 0 OID 0)
+-- Dependencies: 234
 -- Name: TABLE measurement_value; Type: ACL; Schema: quality; Owner: LouNexus_Admin
 --
 
@@ -946,7 +1021,7 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE quality.measurement_value TO "LouNexu
 
 
 --
--- TOC entry 2101 (class 826 OID 16692)
+-- TOC entry 2106 (class 826 OID 16692)
 -- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: admin; Owner: postgres
 --
 
@@ -954,7 +1029,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA admin GRANT SELECT ON SEQUE
 
 
 --
--- TOC entry 2102 (class 826 OID 16693)
+-- TOC entry 2107 (class 826 OID 16693)
 -- Name: DEFAULT PRIVILEGES FOR TYPES; Type: DEFAULT ACL; Schema: admin; Owner: postgres
 --
 
@@ -962,7 +1037,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA admin GRANT ALL ON TYPES TO
 
 
 --
--- TOC entry 2100 (class 826 OID 16691)
+-- TOC entry 2105 (class 826 OID 16691)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: admin; Owner: postgres
 --
 
@@ -970,7 +1045,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA admin GRANT SELECT ON TABLE
 
 
 --
--- TOC entry 2097 (class 826 OID 16397)
+-- TOC entry 2102 (class 826 OID 16397)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: core; Owner: postgres
 --
 
@@ -978,7 +1053,15 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA core GRANT SELECT,INSERT,DE
 
 
 --
--- TOC entry 2098 (class 826 OID 16552)
+-- TOC entry 2108 (class 826 OID 16695)
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: inventory; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA inventory GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO "LouNexus";
+
+
+--
+-- TOC entry 2103 (class 826 OID 16552)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: prod; Owner: postgres
 --
 
@@ -986,18 +1069,18 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA prod GRANT SELECT,INSERT,DE
 
 
 --
--- TOC entry 2099 (class 826 OID 16640)
+-- TOC entry 2104 (class 826 OID 16640)
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: quality; Owner: postgres
 --
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA quality GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES TO "LouNexus";
 
 
--- Completed on 2026-03-06 16:46:37
+-- Completed on 2026-03-07 21:55:04
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict STZweefJ5uq0ekDl1ujqKjg1QF5PBLY4M98dplNLw3D1T0oOyfcDebfazg0eUXO
+\unrestrict WvjJTomfw9LbvKn2EqaKRfFTjoej5c0aIUfZs9AiNQxybDF1Bde9KAfPpgFI5Bx
 
