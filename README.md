@@ -83,6 +83,44 @@ These tables allow variable numbers of measurements per process and support stat
 
 ---
 
+## Inventory Schema (`inventory`)
+
+The `inventory` schema tracks raw material inventory used in production.
+
+Raw materials are stored as inventory lots that reference a part number and may optionally be assigned to a factory. If a material lot has not yet been sent to the production floor, the `factory_id` will be `NULL`.
+
+This schema allows LouNexus to track available raw materials before they are consumed by production processes.
+
+Tables include:
+
+- `raw_material`
+
+### Raw Material Inventory
+
+The `raw_material` table represents individual raw material inventory lots.
+
+Each row represents a quantity of raw material associated with a part number and lot number. Materials may optionally be assigned to a factory when they are distributed to the production floor.
+
+Key characteristics:
+
+- Each record represents a **material lot**
+- Raw materials may exist in **stores (no factory assigned)**
+- Materials can be **assigned to a factory for production use**
+- Quantities are tracked per lot
+
+Typical fields include:
+
+- `raw_material_id`
+- `part_id`
+- `quantity`
+- `lot_number`
+- `material_description`
+- `factory_id`
+- `is_active`
+- `created_utc`
+
+---
+
 ## Admin Schema (`admin`)
 
 Reserved for system-level configuration and administrative functionality such as:

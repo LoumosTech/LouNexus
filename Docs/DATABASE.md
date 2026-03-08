@@ -227,6 +227,50 @@ Stores tracking attribute values entered at a station event.
 
 ---
 
+# Inventory Schema (inventory)
+
+The `inventory` schema stores raw material inventory used by production.
+
+Raw materials are stored as individual inventory lots tied to part numbers.  
+A lot may optionally be assigned to a factory when it is issued to the production floor.
+
+If a raw material has not yet been issued from stores, the `factory_id` will be `NULL`.
+
+This schema currently contains one table:
+
+- `raw_material`
+
+---
+
+## raw_material
+
+Represents a raw material inventory lot.
+
+Each record represents a quantity of raw material associated with a part number and lot number.  
+Materials may optionally be assigned to a factory when they are distributed to the production floor.
+
+| Column | Type | Description |
+|------|------|-------------|
+| raw_material_id | integer | Primary key |
+| part_id | integer | FK → core.part |
+| quantity | numeric | Quantity of material available |
+| lot_number | text | Material lot identifier |
+| material_description | text | Optional description of the material |
+| factory_id | integer | FK → core.factory (nullable until assigned to a factory) |
+| is_active | boolean | Indicates if the inventory record is active |
+| created_utc | timestamptz | Record creation timestamp |
+
+---
+
+### Notes
+
+- Raw materials may exist in **stores** with `factory_id = NULL`.
+- When material is issued to production, the `factory_id` is set to the receiving factory.
+- Quantity values must be **greater than or equal to zero**.
+- Each record represents a **material lot** tied to a part number.
+
+---
+
 # Quality Schema (quality)
 
 Stores measurement data used for quality analysis.
