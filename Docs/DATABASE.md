@@ -285,7 +285,7 @@ Represents a measurement session performed at a station event.
 |------|------|-------------|
 | measurement_set_id | integer | Primary key |
 | station_event_id | integer | FK → prod.station_event |
-| part_measurement_id | integer | FK → core.part_measurement_spec |
+| part_measurement_spec_id | integer | FK → core.part_measurement_spec |
 | notes | text | Optional notes |
 | created_utc | timestamptz | Record creation timestamp |
 
