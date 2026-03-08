@@ -12,14 +12,16 @@ namespace LouNexus.Core.Models.Core
         public WorkStation(int workStationId, string name, int factoryId, int workStationTypeId, bool isActive, DateTime createdUtc)
         {
             WorkStationId = workStationId;
-            Name = name;
+            WorkStationName = name;
             FactoryId = factoryId;
             WorkStationTypeId = workStationTypeId;
             IsActive = isActive;
             CreatedUtc = createdUtc;
         }
         public int WorkStationId { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string WorkStationName { get; set; } = string.Empty;
+        public string WorkStationCode { get; set; } = string.Empty;
+        public string WorkStationMode{ get; set; } = string.Empty;
         public int FactoryId { get; set; }
         public int WorkStationTypeId { get; set; }
         public bool IsActive { get; set; } = true;
