@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1 d17.14
+VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LouNexus.Client", "LouNexus.Client\LouNexus.Client.csproj", "{10568C2C-1439-40EE-B31D-5D234B30C1E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LouNexus.Data", "LouNexus.Data\LouNexus.Data.csproj", "{6F447689-5E47-4F80-9467-FCAE0FDC7B0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LouNexus.Core", "LouNexus.Core\LouNexus.Core.csproj", "{E135CB78-FF28-42D1-8905-8C349E18C6B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{10568C2C-1439-40EE-B31D-5D234B30C1E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10568C2C-1439-40EE-B31D-5D234B30C1E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10568C2C-1439-40EE-B31D-5D234B30C1E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F447689-5E47-4F80-9467-FCAE0FDC7B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F447689-5E47-4F80-9467-FCAE0FDC7B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F447689-5E47-4F80-9467-FCAE0FDC7B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F447689-5E47-4F80-9467-FCAE0FDC7B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E135CB78-FF28-42D1-8905-8C349E18C6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E135CB78-FF28-42D1-8905-8C349E18C6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E135CB78-FF28-42D1-8905-8C349E18C6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E135CB78-FF28-42D1-8905-8C349E18C6B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

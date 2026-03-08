@@ -8,4 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LouNexus.Core\LouNexus.Core.csproj" />
+    <ProjectReference Include="..\LouNexus.Data\LouNexus.Data.csproj" />
+  </ItemGroup>
+
 </Project>
