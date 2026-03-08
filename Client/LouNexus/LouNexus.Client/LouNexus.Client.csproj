@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LouNexus.Core\LouNexus.Core.csproj" />
     <ProjectReference Include="..\LouNexus.Data\LouNexus.Data.csproj" />
   </ItemGroup>
