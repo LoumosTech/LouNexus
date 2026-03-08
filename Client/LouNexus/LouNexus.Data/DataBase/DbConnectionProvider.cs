@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 
 namespace LouNexus.Data.DataBase
 {
@@ -20,7 +20,7 @@ namespace LouNexus.Data.DataBase
 
         public IDbConnection CreateConnection()
         {
-            return new SqlConnection(_connectionString);
+            return new NpgsqlConnection(_connectionString);
         }
     }
 }
