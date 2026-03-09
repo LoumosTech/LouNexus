@@ -166,7 +166,7 @@ namespace LouNexus.Data.Repositories.Core
             command.Parameters.Add(createdUtcParameter);
 
             // execute the command and retrieve the new ID.
-            var result = await command.ExecuteScalarAsync();
+            object? result = await command.ExecuteScalarAsync();
 
             // check if the result is null or DBNull, if so throw an exception.
             if (result == null || result == DBNull.Value)
