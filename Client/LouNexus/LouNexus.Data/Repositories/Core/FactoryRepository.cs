@@ -24,7 +24,7 @@ namespace LouNexus.Data.Repositories.Core
         //implement the GetAllAsync method to retrieve all factories from the database
         public async Task<IEnumerable<Factory>> GetAllAsync()
         {
-            //create a list to hold the factories
+            //create a list to hold the factories.
             var factories = new List<Factory>();
 
             //create a connection to the database
