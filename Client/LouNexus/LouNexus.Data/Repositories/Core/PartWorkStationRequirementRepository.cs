@@ -33,7 +33,7 @@ namespace LouNexus.Data.Repositories.Core
             // check if the connection is a DbConnection, if not throw an exception
             if (connection is not DbConnection dbConnection)
             {
-                throw new InvalidOperationException("The provided connection is not a DbConnection.");
+                throw new InvalidOperationException("The database connection must inherit from DbConnection.");
             }
 
             // open the database connection
@@ -78,7 +78,7 @@ namespace LouNexus.Data.Repositories.Core
             // check if the connection is a DbConnection, if not throw an exception
             if (connection is not DbConnection dbConnection)
             {
-                throw new InvalidOperationException("The provided connection is not a DbConnection.");
+                throw new InvalidOperationException("The database connection must inherit from DbConnection.");
             }
 
             // open the database connection
@@ -129,7 +129,7 @@ namespace LouNexus.Data.Repositories.Core
             // check if the connection is a DbConnection, if not throw an exception
             if (connection is not DbConnection dbConnection)
             {
-                throw new InvalidOperationException("The provided connection is not a DbConnection.");
+                throw new InvalidOperationException("The database connection must inherit from DbConnection.");
             }
 
             // open the database connection
@@ -192,7 +192,7 @@ namespace LouNexus.Data.Repositories.Core
             // check if the connection is a DbConnection, if not throw an exception
             if (connection is not DbConnection dbConnection)
             {
-                throw new InvalidOperationException("The provided connection is not a DbConnection.");
+                throw new InvalidOperationException("The database connection must inherit from DbConnection.");
             }
 
             // open the database connection
@@ -258,7 +258,7 @@ namespace LouNexus.Data.Repositories.Core
             // check if the connection is a DbConnection, if not throw an exception
             if (connection is not DbConnection dbConnection)
             {
-                throw new InvalidOperationException("The provided connection is not a DbConnection.");
+                throw new InvalidOperationException("The database connection must inherit from DbConnection.");
             }
 
             // open the database connection
