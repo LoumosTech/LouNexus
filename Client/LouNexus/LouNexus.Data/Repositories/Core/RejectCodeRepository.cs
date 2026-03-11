@@ -50,7 +50,7 @@ namespace LouNexus.Data.Repositories.Core
                     description, 
                     is_active, 
                     created_utc
-                FROM core.reject_codes";
+                FROM core.reject_code";
 
             // execute the command and get a data reader to read the results
             using var reader = await command.ExecuteReaderAsync();
@@ -99,7 +99,7 @@ namespace LouNexus.Data.Repositories.Core
                     description, 
                     is_active, 
                     created_utc
-                FROM core.reject_codes
+                FROM core.reject_code
                 WHERE reject_code_id = @id";
 
             // create a parameter for the ID and add it to the command
@@ -149,7 +149,7 @@ namespace LouNexus.Data.Repositories.Core
 
             // set the command text to insert a new reject code into the database and return the new ID
             command.CommandText = @"
-                INSERT INTO core.reject_codes (code, description, is_active, created_utc)
+                INSERT INTO core.reject_code (code, description, is_active, created_utc)
                 VALUES (@code, @description, @is_active, @created_utc)
                 RETURNING reject_code_id";
 
@@ -207,7 +207,7 @@ namespace LouNexus.Data.Repositories.Core
 
             // set the command text to update an existing reject code in the database by its ID
             command.CommandText = @"
-                UPDATE core.reject_codes
+                UPDATE core.reject_code
                 SET code = @code,
                     description = @description,
                     is_active = @is_active
@@ -261,7 +261,7 @@ namespace LouNexus.Data.Repositories.Core
 
             // set the command text to delete a reject code by its ID from the database
             command.CommandText = @"
-                DELETE FROM core.reject_codes
+                DELETE FROM core.reject_code
                 WHERE reject_code_id = @id";
 
             // create a parameter for the ID and add it to the command
