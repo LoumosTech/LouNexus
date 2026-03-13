@@ -10,7 +10,7 @@ namespace LouNexus.Core.Models.Prod
     {
         public Inspection() { }
 
-        public Inspection(int inspectionId, string inspectorNumber, int factoryId, int partId, int initialQuality, string status, string notes, DateTime createdUtc, DateTime? clodedUtc)
+        public Inspection(int inspectionId, string inspectorNumber, int factoryId, int partId, int initialQuality, string status, string notes, DateTime createdUtc)
             {
                 InspectionId = inspectionId;
                 InspectorNumber = inspectorNumber;
@@ -20,7 +20,6 @@ namespace LouNexus.Core.Models.Prod
                 Status = status;
                 Notes = notes;
                 CreatedUtc = createdUtc;
-                ClodedUtc = clodedUtc;
         }
 
         public int InspectionId { get; set; }
@@ -31,6 +30,5 @@ namespace LouNexus.Core.Models.Prod
         public string Status { get; set; } = string.Empty;
         public string Notes { get; set; } = string.Empty;
         public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
-        public DateTime? ClodedUtc { get; set; }
     }
 }
