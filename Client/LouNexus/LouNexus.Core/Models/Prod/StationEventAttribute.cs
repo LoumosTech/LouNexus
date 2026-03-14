@@ -10,12 +10,13 @@ namespace LouNexus.Core.Models.Prod
     {
         public StationEventAttribute() { }
 
-        public StationEventAttribute(int stationEventId, int partTrackingAttributeId, string attributeValue, string notes)
+        public StationEventAttribute(int stationEventId, int partTrackingAttributeId, string attributeValue, string notes, DateTime createdUtc)
         {
             StationEventId = stationEventId;
             PartTrackingAttributeId = partTrackingAttributeId;
             AttributeValue = attributeValue;
             Notes = notes;
+            CreatedUtc = createdUtc;
         }
 
         public int StationEventAttributeId { get; set; }
