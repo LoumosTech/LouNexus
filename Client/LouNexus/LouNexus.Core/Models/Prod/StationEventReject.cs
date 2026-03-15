@@ -10,12 +10,13 @@ namespace LouNexus.Core.Models.Prod
     {
         public StationEventReject() { }
 
-        public StationEventReject(int stationEventId, int rejectCodeId, int quantity, string notes)
+        public StationEventReject(int stationEventId, int rejectCodeId, int quantity, string notes, DateTime createdUtc)
         {
             StationEventId = stationEventId;
             RejectCodeId = rejectCodeId;
             Quantity = quantity;
             Notes = notes;
+            CreatedUtc = createdUtc;
         }
 
         public int StationEventRejectId { get; set; }
